@@ -132,20 +132,20 @@ phina.define('MainScene', {
 
     this.backgroundColor = BACK_COLOR;
     SoundManager.playMusic('mainsound');
-
-    this.fure.setInteractive(true);
-    this.fure.onpointend = function() {
+    self = this;
+    self.fure.setInteractive(true);
+    self.fure.onpointend = function() {
       touch_count += 1;
-      this.countlabel.text = touch_count + " フンフフーン♩";
+      self.countlabel.text = touch_count + " フンフフーン♩";
 
-      this.fure.tweener.scaleTo(1.1, 50).play();
-      this.fure.tweener.scaleTo(1.0, 50).play();
+      self.fure.tweener.scaleTo(1.1, 50).play();
+      self.fure.tweener.scaleTo(1.0, 50).play();
 
       if(touch_count % 10 == 0){
         if(array_count < fure_array.length - 1){
           array_count += 1;
         }
-        this.fure.setImage(fure_array[array_count], PUCHI_IMAGE_WIDTH, PUCHI_IMAGE_HEIGHT);
+        self.fure.setImage(fure_array[array_count], PUCHI_IMAGE_WIDTH, PUCHI_IMAGE_HEIGHT);
       }
     };
   },
@@ -261,6 +261,7 @@ phina.define('ResultScene',{
 
 phina.main(function() {
   var app = GameApp({
+    title: 'フレデリカDASHボタン',
     startLabel: "title",
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
