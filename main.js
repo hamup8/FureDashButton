@@ -36,12 +36,13 @@ var PUCHI_IMAGE_WIDTH = 200;
 var PUCHI_IMAGE_HEIGHT = 360;
 var BACK_COLOR = "#F5A9A9";
 
-
 phina.define('TitleScene', {
   superClass: 'DisplayScene',
 
   init: function() {
     this.superInit();
+    this.backgroundColor = BACK_COLOR;
+    exclusive_flg = 0;
 
     this.fromJSON({
       "children": {
@@ -67,16 +68,19 @@ phina.define('TitleScene', {
           "x": SCREEN_WIDTH / 2 ,
           "y": SCREEN_HEIGHT / 2 + 300,
           "fill": "white",
+          "stroke": false,
           "fontSize": 45
         },
       },
     });
 
-    this.backgroundColor = BACK_COLOR;
-
-    self = this;
-    self.on('pointend', function() {
-      self.exit();
+    this.on('pointstart', function() {
+      if(exclusive_flg == 0){
+        exclusive_flg = 1;
+      } else if(exclusive_flg == 1){
+        return;
+      }
+      this.exit();
     });
   },
 });
@@ -134,10 +138,9 @@ phina.define('MainScene', {
     SoundManager.playMusic('mainsound');
     self = this;
     self.fure.setInteractive(true);
-    self.fure.onpointend = function() {
+    self.fure.onpointstart = function() {
       touch_count += 1;
       self.countlabel.text = touch_count + " フンフフーン♩";
-
       self.fure.tweener.scaleTo(1.1, 50).play();
       self.fure.tweener.scaleTo(1.0, 50).play();
 
