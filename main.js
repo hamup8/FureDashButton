@@ -20,7 +20,7 @@ var ASSETS = {
     'fure_humming'          : './img/fure_humming.png'
   },
   sound: {
-    //mainsound: './bgm/main_sound.mp3'
+    mainsound: './bgm/main_sound.mp3'
   },
 };
 
@@ -138,7 +138,7 @@ phina.define('MainScene', {
     });
 
     this.backgroundColor = BACK_COLOR;
-  //  SoundManager.playMusic('mainsound');
+    SoundManager.playMusic('mainsound');
     self = this;
     self.fure.setInteractive(true);
     self.fure.onpointstart = function() {
@@ -168,7 +168,7 @@ phina.define('MainScene', {
   },
 
   gameover: function(){
-  //  SoundManager.stopMusic();
+    SoundManager.stopMusic();
     gotRank = false;
     this.getRank();
     this.exit({
