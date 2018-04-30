@@ -189,7 +189,7 @@ phina.define('MainScene', {
 
 function cameRankData(json){
   window.clearTimeout(rankTimeout);
-  var newMessage = 'ランキング: '+json.rank + ' / ' + json.allrank;
+  var newMessage = 'ランキング: '+json.rank + ' / ' + json.allrank + '位';
   thisResult.rankingLabel.text = newMessage;
   gotRank = true;
 }
