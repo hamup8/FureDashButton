@@ -12,10 +12,14 @@ var ASSETS = {
     'fure_SR_meido_plus'    : './img/fure_SR_meido_plus.png',
     'fure_SR_tulip'         : './img/fure_SR_tulip.png',
     'fure_SR_tulip_plus'    : './img/fure_SR_tulip_plus.png',
+    'fure_SR_crazy'         : './img/fure_SR_crazy.png',
+    'fure_SR_crazy_plus'    : './img/fure_SR_crazy_plus.png',
     'fure_SSR_avenue'       : './img/fure_SSR_avenue.png',
     'fure_SSR_avenue_plus'  : './img/fure_SSR_avenue_plus.png',
     'fure_SSR_lumiere'      : './img/fure_SSR_lumiere.png',
     'fure_SSR_lumiere_plus' : './img/fure_SSR_lumiere_plus.png',
+    'fure_SSR_soleil'       : './img/fure_SSR_soleil.png',
+    'fure_SSR_soleil_plus'  : './img/fure_SSR_soleil_plus.png',
     'fure_cracker'          : './img/fure_cracker.png',
     'fure_humming'          : './img/fure_humming.png'
   },
@@ -26,7 +30,8 @@ var ASSETS = {
 
 var fure_array = ['fure'           , 'fure_R_plus'          , 'fure_SR_meido'  , 'fure_SR_meido_plus'  ,
                  'fure_SR_tulip'   , 'fure_SR_tulip_plus'   , 'fure_SSR_avenue', 'fure_SSR_avenue_plus',
-                 'fure_SSR_lumiere', 'fure_SSR_lumiere_plus'];
+                 'fure_SSR_lumiere', 'fure_SSR_lumiere_plus', 'fure_SR_crazy'  , 'fure_SR_crazy_plus'  ,
+                 'fure_SSR_soleil' , 'fure_SSR_soleil_plus' ];
 
 var SCREEN_WIDTH  = 640;
 var SCREEN_HEIGHT = 960;
@@ -147,11 +152,14 @@ phina.define('MainScene', {
       self.fure.tweener.scaleTo(1.1, 50).play();
       self.fure.tweener.scaleTo(1.0, 50).play();
 
-      if(touch_count % 10 == 0){
+      if(touch_count % 5 == 0){
         if(array_count < fure_array.length - 1){
           array_count += 1;
         }
         self.fure.setImage(fure_array[array_count], PUCHI_IMAGE_WIDTH, PUCHI_IMAGE_HEIGHT);
+        if(touch_count % 65 == 0){
+          array_count = 0;
+        }
       }
     };
   },
