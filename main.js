@@ -256,9 +256,9 @@ phina.define('ResultScene',{
             'cornerRadius': 64,
             'fill': 'rgba(240, 240, 240, 0.5)',
           }],
-          'x': this.gridX.center(-3.5),
-          'y': this.gridY.span(13),
-          'interactive': true,
+          x: this.gridX.center(-3),
+          y: this.gridY.span(13),
+          interactive: true,
         },
         'playButton': {
           'className': 'phina.ui.Button',
@@ -270,39 +270,19 @@ phina.define('ResultScene',{
             'cornerRadius': 64,
             'fill': 'rgba(240, 240, 240, 0.5)',
           }],
-          'x': this.gridX.center(3.5),
-          'y': this.gridY.span(13),
-          'interactive': true,
+          x: this.gridX.center(3),
+          y: this.gridY.span(13),
+          interactive: true,
           onpush: function() {
             this.exit();
           }.bind(this),
         },
-        'pollButton': {
-          'className': 'phina.ui.Button',
-          'arguments': [{
-            'text': '投票',
-            'width': 128,
-            'height': 128,
-            'fontSize': 50,
-            'cornerRadius': 64,
-            'fill': 'rgba(240, 240, 240, 0.5)',
-          }],
-          'x': this.gridX.center(),
-          'y': this.gridY.span(13),
-          'interactive': true,
-        },
-      },
+      }
     });
     this.backgroundColor = BACK_COLOR;
 
     this.shareButton.onclick = function() {
-      var score_text = this.parent.scoreText.text + 'フレデリカ〜♩';
-
-      if(gotRank){
-        result_text = '{0}\n{1}\n'.format(score_text, this.parent.rankingLabel.text);
-      }else{
-      var result_text = score_text;
-      }
+      var result_text = this.parent.scoreText.text + "フレデリカ〜♩";
       var url = phina.social.Twitter.createURL({
           text: result_text,
           hashtags: params.hashtags,
@@ -310,10 +290,7 @@ phina.define('ResultScene',{
         });
         window.open(url, 'share window', 'width=480, height=320');
     };
-    this.pollButton.onclick = function() {
-      var url = 'http://sp.pf.mbga.jp/12008305/?guid=ON&url=http%3A%2F%2F125.6.169.35%2Fidolmaster%2Fvote%2Findex%2F200007%2F1%2F0%2F0%3Fl_frm%3DVote_1%26rnd%3D461647559'
-      window.open(url, 'share window', 'width=480, height=320');
-    };
+
   },
 });
 
