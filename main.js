@@ -282,7 +282,12 @@ phina.define('ResultScene',{
     this.backgroundColor = BACK_COLOR;
 
     this.shareButton.onclick = function() {
-      var result_text = this.parent.scoreText.text + "フレデリカ〜♩";
+      var score_text = this.parent.scoreText.text + 'フレデリカ〜♩';
+       if(gotRank){
+        result_text = '{0}\n{1}\n'.format(score_text, this.parent.rankingLabel.text);
+      }else{
+      var result_text = score_text;
+      }
       var url = phina.social.Twitter.createURL({
           text: result_text,
           hashtags: params.hashtags,
